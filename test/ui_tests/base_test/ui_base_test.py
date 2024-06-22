@@ -10,7 +10,6 @@ class UIBaseTest:
 
     @pytest.fixture(autouse=True, scope='function')
     def init_url_page(self, base_url, page):
-        print("init_url_page")
         self.base_url = base_url
         self.page = page
         self.verifier = BaseVerifier()

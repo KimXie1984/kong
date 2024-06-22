@@ -12,13 +12,23 @@ class GatewayService(BasePage):
         url = f"{base_url}/{workspace_name}/services/"
         self.page.goto(url)
 
+    def __click_add_gateway_service(self):
+        buttons = self.page.locator("[data-testid='new-gateway-service']")
+        if buttons.count() == 0:
+            self.page.get_by_test_id("toolbar-add-gateway-service").click()
+        else:
+            self.page.get_by_test_id("new-gateway-service").click()
+
+
     def new_gateway_service_by_url(self, name, tags, url, **kwargs):
+        self.__click_add_gateway_service()
         self.page.locator(GatewayService.name).fill(name)
         self.page.locator(GatewayService.tags).fill(tags)
         self.page.locator(GatewayService.url).fill(url)
         self.page.locator(GatewayService.save).click()
 
     def new_gateway_service_by_separate_elements(self, name, tags, protocol, host, path="", port="8080", **kwargs):
+        self.__click_add_gateway_service()
         self.page.locator(GatewayService.name).fill(name)
         self.page.locator(GatewayService.tags).fill(tags)
         # choose to use separate elements
