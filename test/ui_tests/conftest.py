@@ -16,7 +16,7 @@ def base_url():
 def page(base_url):
     with sync_playwright() as pw:
         if os.getenv("DOCKER_RUN") or os.getenv("GITHUB_RUN"):
-            browser = pw.chromium.launch(headless=True, args=["--no-sandbox"])
+            browser = pw.chromium.launch(headless=True, args=["--no-sandbox", "--no-zygote"], slow_mo=1000)
         else:
             browser = pw.chromium.launch(headless=False, slow_mo=1000)
         permissions = ["clipboard-read", "clipboard-write"]

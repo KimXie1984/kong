@@ -13,12 +13,13 @@ class GatewayService(BasePage):
         self.page.goto(url)
 
     def __click_add_gateway_service(self):
-        buttons = self.page.locator("[data-testid='new-gateway-service']")
-        if buttons.count() == 0:
+        count = self.page.get_by_test_id("new-gateway-service").count()
+        if count == 0:
             self.page.get_by_test_id("toolbar-add-gateway-service").click()
         else:
             self.page.get_by_test_id("new-gateway-service").click()
-
+        # self.page.locator("//a[text()='New Gateway Service']").click()
+        # self.page.get_by_text("New Gateway Service").click()
 
     def new_gateway_service_by_url(self, name, tags, url, **kwargs):
         self.__click_add_gateway_service()
