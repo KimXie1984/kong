@@ -1,0 +1,2 @@
+DEBUG    asyncio:selector_events.py:54 Using selector: EpollSelector
+DEBUG    root:log_util.py:26 Verify actual = expected: 1 = 1 ==> PASS
