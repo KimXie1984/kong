@@ -1,0 +1,11 @@
+playwright
+pytest-playwright
+pytest
+pytest-html
+pytest-rerunfailures
+seldom
+allure-pytest
+anyio
+pytest-asyncio
+pytest-tornasync
+deepdiff
