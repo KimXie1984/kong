@@ -1,0 +1,4 @@
+DEBUG    root:log_util.py:26 Verify actual = expected: 0 = 0 ==> PASS
+INFO     root:log_util.py:24 {'values_changed': {'root': {'new_value': 1, 'old_value': 0}}}
+ERROR    root:log_util.py:30 Verify actual = expected: 0 = 1
+{'values_changed': {'root': {'new_value': 1, 'old_value': 0}}} ==> FAIL

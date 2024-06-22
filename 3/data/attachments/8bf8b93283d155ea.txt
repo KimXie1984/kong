@@ -1,0 +1,4 @@
+2024-06-22 10:34:14,295 - root - DEBUG - Verify actual = expected: 0 = 0 ==> PASS
+2024-06-22 10:34:15,581 - root - INFO - {'values_changed': {'root': {'new_value': 1, 'old_value': 0}}}
+2024-06-22 10:34:15,581 - root - ERROR - Verify actual = expected: 0 = 1
+{'values_changed': {'root': {'new_value': 1, 'old_value': 0}}} ==> FAIL

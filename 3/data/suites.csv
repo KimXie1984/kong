@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Sat Jun 22 10:34:14 GMT 2024","Sat Jun 22 10:34:15 GMT 2024","1286","src.ui_tests.gateway","test_gateway_service","TestGatewayService","","","test_new_gateway_service",""
