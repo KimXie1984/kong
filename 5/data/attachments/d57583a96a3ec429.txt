@@ -1,0 +1,4 @@
+DEBUG    asyncio:selector_events.py:54 Using selector: EpollSelector
+INFO     root:log_util.py:24 {'values_changed': {'root': {'new_value': 1, 'old_value': 0}}}
+ERROR    root:log_util.py:30 Verify actual = expected: 0 = 1
+{'values_changed': {'root': {'new_value': 1, 'old_value': 0}}} ==> FAIL
