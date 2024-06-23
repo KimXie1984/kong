@@ -7,6 +7,7 @@ class GatewayService(BasePage):
     tags = "//input[@placeholder='Enter a list of tags separated by comma']"
     url = "//input[@placeholder='Enter a URL']"
     save = "//button[@type='submit']"
+    alert_message = ".alert-message"
 
     def __wait_for_list_to_be_visible(self):
         self.exists(self.page.locator("//div[@class='kong-ui-entities-gateway-services-list']"))

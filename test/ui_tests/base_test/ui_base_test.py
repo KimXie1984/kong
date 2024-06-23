@@ -9,8 +9,8 @@ class UIBaseTest:
     verifier: BaseVerifier
 
     @pytest.fixture(autouse=True, scope='function')
-    def init_url_page(self, base_url, page):
-        self.base_url = base_url
+    def init_url_page(self, env_config, page):
+        self.base_url = env_config.url
         self.page = page
         self.verifier = BaseVerifier()
         yield

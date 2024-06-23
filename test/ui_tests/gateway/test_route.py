@@ -18,6 +18,7 @@ class TestRoute(UIBaseTest):
         self.gateway_service.delete_all_gateway_services(self.base_url)
         yield
 
+    @pytest.mark.golden
     def test_new_route(self):
         self.gateway_service.goto_gateway_service(self.base_url)
         name = f"{RandomUtil.timestamp()}"

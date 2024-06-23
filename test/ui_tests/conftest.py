@@ -5,27 +5,34 @@ from playwright.sync_api import sync_playwright
 
 
 @pytest.fixture(scope='session', autouse=True)
-def base_url():
+def env_config():
     if not os.getenv("ENV_NAME"):
         env_name = "local"
     env_config = EnvConfig(env_name)
-    yield env_config.url
+    yield env_config
 
 
 @pytest.fixture(scope="class")
-def page(base_url):
+def page(env_config):
     with sync_playwright() as pw:
-        if os.getenv("DOCKER_RUN") or os.getenv("GITHUB_RUN"):
-            browser = pw.chromium.launch(headless=True, args=["--no-sandbox", "--no-zygote"])
+        mode = env_config.mode
+        if mode == "headless" or os.getenv("GITHUB_RUN"):
+            headless = True
         else:
-            browser = pw.chromium.launch(headless=False)
+            headless = False
+        if env_config.browser == "chromium":
+            browser = pw.chromium.launch(headless=headless, args=["--no-sandbox", "--no-zygote"])
+        elif env_config.browser == "firefox":
+            browser = pw.firefox.launch(headless=headless)
+        else:
+            browser = pw.webkit.launch(headless=headless)
         permissions = ["clipboard-read", "clipboard-write"]
         context = browser.new_context(permissions=permissions)
         # 录制日志
         context.tracing.start(screenshots=True, snapshots=True, sources=True)
         context.set_default_timeout(10 * 1000)
         page = context.new_page()
-        page.goto(base_url)
+        page.goto(env_config.url)
         yield page
         # 保存日志
         context.tracing.stop(

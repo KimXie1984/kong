@@ -1,0 +1,6 @@
+- name: baidu
+  tags: kim
+  url: https://www.baidu.com
+- name: google
+  tags: None
+  url: https://www.google.com

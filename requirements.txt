@@ -9,3 +9,5 @@ anyio
 pytest-asyncio
 pytest-tornasync
 deepdiff
+pyyaml
+pytest-repeat
