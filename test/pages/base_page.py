@@ -1,4 +1,5 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Dialog
+from utils.log_util import logger
 
 
 class BasePage:
@@ -33,3 +34,18 @@ class BasePage:
 
     def close(self):
         self.page.close()
+
+    def handle_dialog(self, dialog: Dialog, dismiss=None):
+        logger.debug(f"dialog with message {dialog.message}")
+        if dismiss:
+            dialog.dismiss()
+        else:
+            dialog.accept()
+
+    def handle_popup(self, popup):
+        popup.wait_for_load_state()
+        logger.debug(popup.title())
+
+    def exists(self, locator, state="visible", timeout=5 * 1000):
+        logger.debug(f"wait for locator to be {state} in {timeout} ms, locator={locator}")
+        locator.wait_for(state=state, timeout=timeout)

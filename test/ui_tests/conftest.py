@@ -1,7 +1,7 @@
 import pytest
 import os
 from env_config.env_config import EnvConfig
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import sync_playwright
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -16,13 +16,14 @@ def base_url():
 def page(base_url):
     with sync_playwright() as pw:
         if os.getenv("DOCKER_RUN") or os.getenv("GITHUB_RUN"):
-            browser = pw.chromium.launch(headless=True, args=["--no-sandbox", "--no-zygote"], slow_mo=1000)
+            browser = pw.chromium.launch(headless=True, args=["--no-sandbox", "--no-zygote"])
         else:
-            browser = pw.chromium.launch(headless=False, slow_mo=1000)
+            browser = pw.chromium.launch(headless=False)
         permissions = ["clipboard-read", "clipboard-write"]
         context = browser.new_context(permissions=permissions)
         # 录制日志
         context.tracing.start(screenshots=True, snapshots=True, sources=True)
+        context.set_default_timeout(10 * 1000)
         page = context.new_page()
         page.goto(base_url)
         yield page
