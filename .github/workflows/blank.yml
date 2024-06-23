@@ -61,7 +61,7 @@ jobs:
     - name: Test with pytest
       run: |
         [ -d newdir ] || mkdir allure-results
-        pytest -v --alluredir allure-results
+        pytest -v --alluredir allure-results --reruns 2 --rerun-except AssertionError
 
     - name: upload playwright trace and allure report
       if: always()
