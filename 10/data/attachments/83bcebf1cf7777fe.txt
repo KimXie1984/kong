@@ -1,0 +1,8 @@
+DEBUG    root:log_util.py:26 wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+DEBUG    root:log_util.py:26 wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+DEBUG    root:log_util.py:26 wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+DEBUG    root:log_util.py:26 Verify actual = expected: 0 = 0 ==> PASS
+DEBUG    root:log_util.py:26 wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+DEBUG    root:log_util.py:26 wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+DEBUG    root:log_util.py:26 wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/create'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+DEBUG    root:log_util.py:26 Verify: <UNIQUE violation detected> in <UNIQUE violation detected on '{name="kim1743122054"}'> ==> PASS

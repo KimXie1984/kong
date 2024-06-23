@@ -1,0 +1,8 @@
+2024-06-23 11:17:25,664 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+2024-06-23 11:17:26,170 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 11:17:26,984 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 11:17:27,219 - root - DEBUG - Verify actual = expected: 0 = 0 ==> PASS
+2024-06-23 11:17:27,522 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 11:17:27,708 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 11:17:27,975 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/create'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 11:17:28,505 - root - DEBUG - Verify: <UNIQUE violation detected> in <UNIQUE violation detected on '{name="kim1743122054"}'> ==> PASS
