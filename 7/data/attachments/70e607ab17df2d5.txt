@@ -1,0 +1,10 @@
+2024-06-23 03:25:59,643 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+2024-06-23 03:25:59,929 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 03:26:01,419 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 03:26:01,695 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/services/'> selector="//div[@class='kong-ui-entities-gateway-services-list']">
+2024-06-23 03:26:02,724 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+2024-06-23 03:26:03,312 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+2024-06-23 03:26:03,511 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+2024-06-23 03:26:04,609 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="a[class='make-a-wish']">
+2024-06-23 03:26:05,227 - root - DEBUG - wait for locator to be visible in 5000 ms, locator=<Locator frame=<Frame name= url='http://localhost:8002/default/routes/'> selector="//div[@class='kong-ui-entities-routes-list']">
+2024-06-23 03:26:05,498 - root - DEBUG - Verify actual = expected: 1 = 1 ==> PASS
