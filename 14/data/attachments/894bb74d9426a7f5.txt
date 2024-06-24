@@ -1,0 +1,2 @@
+/home/runner/work/kongtest/kongtest/test/ui_tests/gateway/data
+/home/runner/work/kongtest/kongtest/test/ui_tests/gateway/data
