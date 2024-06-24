@@ -22,8 +22,11 @@ class TestRoute(UIBaseTest):
     def test_new_route(self):
         self.gateway_service.goto_gateway_service(self.base_url)
         name = f"{RandomUtil.timestamp()}"
-        self.gateway_service.new_gateway_service_by_url(name, "jerry",
-                                                        f"http://joy{RandomUtil.timestamp()}.org")
+        paras = {
+            "name": name,
+            "url": f"http://kim.org"
+        }
+        self.gateway_service.new_gateway_service(paras)
         existing = self.route.count_route(self.base_url)
         self.route.goto_routes(self.base_url)
         self.route.new_route(name)
