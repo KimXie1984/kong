@@ -23,7 +23,6 @@ class TestGatewayService(UIBaseTest):
         self.route.delete_all_routes(self.base_url)
         self.gateway_service.delete_all_gateway_services(self.base_url)
         self.verifier.verify_equals(GatewayService(self.page).count_gateway_services(self.base_url), 0)
-        print(TestGatewayService.test_data_dir)
         yield
 
     @pytest.mark.smoke
@@ -49,8 +48,11 @@ class TestGatewayService(UIBaseTest):
 
     def test_add_gateway_service_duplicate(self):
         self.gateway_service.goto_gateway_service(self.base_url)
-        name = f"kim{RandomUtil.timestamp()}"
-        self.gateway_service.new_gateway_service_by_url(name, "kim", f"http://{name}.org")
-        self.gateway_service.new_gateway_service_by_url(name, "kim", f"http://{name}.org")
+        paras = {
+            "name": f"kim{RandomUtil.timestamp()}",
+            "url": f"http://kim.org"
+        }
+        self.gateway_service.new_gateway_service(paras)
+        self.gateway_service.new_gateway_service(paras)
         message = self.page.locator(self.gateway_service.alert_message).text_content()
         self.verifier.verify_in("UNIQUE violation detected", message)
