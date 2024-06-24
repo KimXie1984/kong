@@ -25,14 +25,6 @@ class GatewayService(BasePage):
         else:
             self.page.get_by_test_id("new-gateway-service").click()
 
-    def new_gateway_service_by_url(self, name, tags, url, **kwargs):
-        self.__click_add_gateway_service()
-        self.page.locator(GatewayService.name).fill(name)
-        self.page.locator(GatewayService.tags).fill(tags)
-        self.page.locator(GatewayService.url).fill(url)
-        self.page.locator(GatewayService.save).click()
-        self.page.wait_for_load_state("load")
-
     def delete_all_gateway_services(self, base_url, workspace_name="default"):
         self.goto_gateway_service(base_url, workspace_name)
         service_rows = "//div/table/tbody/tr"

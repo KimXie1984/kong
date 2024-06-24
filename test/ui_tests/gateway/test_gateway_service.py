@@ -30,8 +30,11 @@ class TestGatewayService(UIBaseTest):
     @pytest.mark.golden
     def test_new_gateway_service(self):
         self.gateway_service.goto_gateway_service(self.base_url)
-        name = f"kim{RandomUtil.timestamp()}"
-        self.gateway_service.new_gateway_service_by_url(name, "kim", f"http://{name}.org")
+        paras = {
+            "name": f"kim{RandomUtil.timestamp()}",
+            "url": f"http://kim.org"
+        }
+        self.gateway_service.new_gateway_service(paras)
         # TODO simply verify the entity count for now, could validate the entity's attributes with the input in the future
         self.verifier.verify_equals(GatewayService(self.page).count_gateway_services(self.base_url), 1)
 
