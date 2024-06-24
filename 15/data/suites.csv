@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Jun 24 02:24:47 GMT 2024","Mon Jun 24 02:24:48 GMT 2024","1274","test.ui_tests.gateway","test_gateway_service","TestGatewayService","","","test_new_gateway_service",""
+"passed","Mon Jun 24 02:24:50 GMT 2024","Mon Jun 24 02:24:51 GMT 2024","1372","test.ui_tests.gateway","test_gateway_service","TestGatewayService","","","test_new_gateway_service_parameterized[paras0]",""
+"passed","Mon Jun 24 02:25:02 GMT 2024","Mon Jun 24 02:25:05 GMT 2024","3453","test.ui_tests.gateway","test_route","TestRoute","","","test_new_route",""
+"broken","Mon Jun 24 02:25:00 GMT 2024","Mon Jun 24 02:25:01 GMT 2024","488","test.ui_tests.gateway","test_gateway_service","TestGatewayService","","","test_add_gateway_service_duplicate",""
+"passed","Mon Jun 24 02:24:53 GMT 2024","Mon Jun 24 02:24:55 GMT 2024","1828","test.ui_tests.gateway","test_gateway_service","TestGatewayService","","","test_new_gateway_service_parameterized[paras1]",""
