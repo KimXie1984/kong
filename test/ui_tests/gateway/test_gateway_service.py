@@ -30,8 +30,9 @@ class TestGatewayService(UIBaseTest):
     @pytest.mark.golden
     def test_new_gateway_service(self):
         self.gateway_service.goto_gateway_service(self.base_url)
-        self.gateway_service.new_gateway_service_by_separate_elements(f"{RandomUtil.timestamp()}", "jerry", "grpc",
-                                                                      "baidu.com", "", "")
+        name = f"kim{RandomUtil.timestamp()}"
+        self.gateway_service.new_gateway_service_by_url(name, "kim", f"http://{name}.org")
+        # TODO simply verify the entity count for now, could validate the entity's attributes with the input in the future
         self.verifier.verify_equals(GatewayService(self.page).count_gateway_services(self.base_url), 1)
 
     @pytest.mark.smoke
@@ -39,7 +40,8 @@ class TestGatewayService(UIBaseTest):
     @pytest.mark.parametrize("paras", YamlUtil.read_yaml(os.path.join(test_data_dir, "new_gateway_service.yaml")))
     def test_new_gateway_service_parameterized(self, paras):
         self.gateway_service.goto_gateway_service(self.base_url)
-        self.gateway_service.new_gateway_service_by_url(paras["name"], paras["tags"], paras["url"])
+        self.gateway_service.new_gateway_service(paras)
+        # TODO simply verify the entity count for now, could validate the entity's attributes with the input in the future
         self.verifier.verify_equals(GatewayService(self.page).count_gateway_services(self.base_url), 1)
 
     def test_add_gateway_service_duplicate(self):

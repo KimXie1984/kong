@@ -1,6 +1,30 @@
-- name: baidu
-  tags: kim
+- name: url
+  tags: null
   url: https://www.baidu.com
-- name: google
-  tags: None
-  url: https://www.google.com
+  protocol: null
+  host: null
+  path: null
+  port: null
+  retries: "3"
+  connection_timeout: "1000"
+  write_timeout: "1000"
+  read_timeout: "1000"
+  client_cert: null
+  ca_cert: null
+  tls_verify: null
+- name: separate_elements
+  tags: null
+  url: null
+  protocol: http
+  host: baidu.com
+  path: /
+  port: "8080"
+  retries: "3"
+  connection_timeout: "1000"
+  write_timeout: "1000"
+  read_timeout: "1000"
+  client_cert: null
+  ca_cert: null
+  tls_verify: null
+
+  

@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from playwright.sync_api import expect
+from playwright.sync_api import expect, Page
 
 
 class GatewayService(BasePage):
@@ -33,33 +33,6 @@ class GatewayService(BasePage):
         self.page.locator(GatewayService.save).click()
         self.page.wait_for_load_state("load")
 
-    def new_gateway_service_by_separate_elements(self, name, tags, protocol, host, path="", port="8080", **kwargs):
-        self.__click_add_gateway_service()
-        self.page.locator(GatewayService.name).fill(name)
-        self.page.locator(GatewayService.tags).fill(tags)
-        # choose to use separate elements
-        self.page.get_by_label("Protocol, Host, Port and Path").check()
-        self.page.get_by_test_id("gateway-service-protocol-select").click()
-        if protocol.startswith("http"):
-            self.page.get_by_test_id("select-item-http").get_by_role("button", name=protocol).click()
-        elif protocol.startswith("grpc"):
-            self.page.get_by_test_id("select-item-grpc").get_by_role("button", name=protocol).click()
-        elif protocol.startswith("udp"):
-            self.page.get_by_test_id("select-item-udp").get_by_role("button", name=protocol).click()
-        elif protocol.startswith("ws"):
-            self.page.get_by_test_id("select-item-websocket").get_by_role("button", name=protocol).click()
-        else:
-            self.page.get_by_test_id("select-item-tcp").get_by_role("button", name=protocol).click()
-        self.page.locator("//input[@placeholder='Enter a host']").fill(host)
-        path_count = self.page.locator("//input[@placeholder='Enter a path']").count()
-        if path_count != 0:
-            self.page.locator("//input[@placeholder='Enter a path']").fill(path)
-        port_count = self.page.get_by_test_id("gateway-service-port-input").count()
-        if port_count != 0:
-            self.page.get_by_test_id("gateway-service-port-input").fill(port)
-        self.page.locator(GatewayService.save).click()
-        self.page.wait_for_load_state("load")
-
     def delete_all_gateway_services(self, base_url, workspace_name="default"):
         self.goto_gateway_service(base_url, workspace_name)
         service_rows = "//div/table/tbody/tr"
@@ -84,3 +57,105 @@ class GatewayService(BasePage):
         self.goto_gateway_service(base_url, workspace_name)
         service_rows = "//div/table/tbody/tr"
         return self.page.locator(service_rows).count()
+
+    def new_gateway_service(self, kwargs):
+        self.__click_add_gateway_service()
+        self.__new_gateway_service_general_info(**kwargs)
+        self.__new_gateway_service_endpoint(**kwargs)
+        self.__new_gateway_service_advanced_fields(**kwargs)
+        self.page.locator(GatewayService.save).click()
+        self.page.wait_for_load_state("load")
+
+    def __new_gateway_service_general_info(self, **kwargs):
+        name = kwargs.get("name", None)
+        if name:
+            self.page.locator(GatewayService.name).fill(name)
+        tags = kwargs.get("tags", None)
+        if tags:
+            self.page.locator(GatewayService.tags).fill(tags)
+
+    def __new_gateway_service_endpoint(self, **kwargs):
+        url = kwargs.get("url", None)
+        if url:
+            # choose to use separate elements
+            self.page.locator(GatewayService.url).fill(url)
+        else:
+            # choose to use separate elements
+            self.page.get_by_label("Protocol, Host, Port and Path").check()
+            protocol = kwargs.get("protocol")
+            path = kwargs.get("path", None)
+            self.page.get_by_test_id("gateway-service-protocol-select").click()
+            if protocol.startswith("http"):
+                self.page.get_by_test_id("select-item-http").get_by_role("button", name=protocol).click()
+                path_count = self.page.locator("//input[@placeholder='Enter a path']").count()
+                assert path_count != 0
+                self.page.locator("//input[@placeholder='Enter a path']").fill(path)
+            elif protocol.startswith("grpc"):
+                self.page.get_by_test_id("select-item-grpc").get_by_role("button", name=protocol).click()
+            elif protocol.startswith("udp"):
+                self.page.get_by_test_id("select-item-udp").get_by_role("button", name=protocol).click()
+            elif protocol.startswith("ws"):
+                self.page.get_by_test_id("select-item-websocket").get_by_role("button", name=protocol).click()
+                path_count = self.page.locator("//input[@placeholder='Enter a path']").count()
+                assert path_count != 0
+                self.page.locator("//input[@placeholder='Enter a path']").fill(path)
+            else:
+                self.page.get_by_test_id("select-item-tcp").get_by_role("button", name=protocol).click()
+            host = kwargs.get("host", None)
+            port = kwargs.get("port", None)
+            self.page.locator("//input[@placeholder='Enter a host']").fill(host)
+            self.page.get_by_test_id("gateway-service-port-input").fill(port)
+
+    def __new_gateway_service_advanced_fields(self, **kwargs):
+        if kwargs:
+            btn_view_advanced_fields = self.page.locator("//button[@data-testid='collapse-trigger-content']")
+            btn_view_advanced_fields.click()
+        retries = kwargs.get("retries", None)
+        if retries:
+            self.page.get_by_test_id("gateway-service-retries-input").fill(retries)
+        connection_timeout = kwargs.get("connection_timeout", None)
+        if connection_timeout:
+            self.page.get_by_test_id("gateway-service-connTimeout-input").fill(connection_timeout)
+        write_timeout = kwargs.get("write_timeout", None)
+        if write_timeout:
+            self.page.get_by_test_id("gateway-service-writeTimeout-input").fill(write_timeout)
+        read_timeout = kwargs.get("read_timeout", None)
+        if read_timeout:
+            self.page.get_by_test_id("gateway-service-readTimeout-input").fill(read_timeout)
+        client_cert = kwargs.get("client_cert", None)
+        if client_cert:
+            self.page.get_by_test_id("gateway-service-clientCert-input").fill(client_cert)
+        ca_cert = kwargs.get("ca_cert", None)
+        if ca_cert:
+            self.page.get_by_test_id("gateway-service-ca-certs-input").fill(ca_cert)
+        tls_verify = kwargs.get("tls_verify")
+        if tls_verify:
+            self.page.get_by_test_id("gateway-service-tls-verify-checkbox").check()
+
+
+class ModelAddGatewayService:
+    def __init__(
+            self,
+            name,
+            tags,
+            url,
+            protocol,
+            host,
+            path,
+            port,
+            retries,
+            connection_timeout,
+            write_timeout,
+            read_timeout
+    ):
+        self.name = name
+        self.tags = tags
+        self.url = url
+        self.protocol = protocol
+        self.host = host
+        self.path = path
+        self.port = port
+        self.retries = retries
+        self.connection_timeout = connection_timeout
+        self.write_timeout = write_timeout
+        self.read_timeout = read_timeout
